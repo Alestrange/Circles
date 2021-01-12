@@ -1,14 +1,18 @@
 import sys
 import random
-from PyQt5 import uic  # Импортируем uic
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 
 
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)  # Загружаем дизайн
+        self.setGeometry(400, 200, 700, 700)
+        self.setWindowTitle('Программа')
+        self.pushButton = QPushButton(self)
+        self.pushButton.move(300, 50)
+        self.pushButton.setText("Кнопка")
+        self.pushButton.resize(100, 50)
         self.pushButton.clicked.connect(self.paint)
         self.do_paint = False
         # Обратите внимание: имя элемента такое же как в QTDesigner
@@ -25,14 +29,17 @@ class MyWidget(QMainWindow):
         self.repaint()
 
     def draw_flag(self, qp):
-        qp.setBrush(QColor("yellow"))
-        size = random.randint(1, 300)
+        qp.setBrush(QColor(random.randint(1, 255), random.randint(1, 255), random.randint(1, 255)))
+        size = random.randint(30, 300)
         qp.drawEllipse(100, 200, size, size)
-        size = random.randint(1, 300)
+        qp.setBrush(QColor(random.randint(1, 255), random.randint(1, 255), random.randint(1, 255)))
+        size = random.randint(30, 300)
         qp.drawEllipse(300, 500, size, size)
-        size = random.randint(1, 300)
+        qp.setBrush(QColor(random.randint(1, 255), random.randint(1, 255), random.randint(1, 255)))
+        size = random.randint(30, 300)
         qp.drawEllipse(400, 400, size, size)
-        size = random.randint(1, 300)
+        qp.setBrush(QColor(random.randint(1, 255), random.randint(1, 255), random.randint(1, 255)))
+        size = random.randint(30, 300)
         qp.drawEllipse(150, 300, size, size)
 
 
